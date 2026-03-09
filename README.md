@@ -78,55 +78,28 @@ MIDI and audio are intended to be available over Ethernet:
 
 ## Devices
 
-### [SynTee](devices/syntee.md)
+### [SynTee](https://github.com/openaudiotools/syntee)
 
 A standalone sound module with basic controls.
 
-| Port | Description |
-|------|-------------|
-| LR In | Stereo audio input |
-| LR Out | Stereo audio output |
-| MIDI In | MIDI input |
-| MIDI Out | MIDI output |
-| ETH | Ethernet |
-| Power | USB power |
-
-### [HubTee](devices/hubtee.md)
-
-A USB / MIDI / Ethernet hub with clock.
-
-| Port | Quantity |
-|------|----------|
-| USB MIDI Host | 4 |
-| PC ETH | 1 |
-| ETH Connector | 8 |
-| MIDI In | 2 |
-| MIDI Out | 2 |
-
-### [MixTee](devices/mixtee.md)
+### [MixTee](https://github.com/openaudiotools/mixtee)
 
 A digital audio mixer, recorder, and interface. Designed to be used with MIDI controllers. No built-in preamps.
 
 - 16 inputs, 8 outputs (4 stereo)
 - All channels available over Ethernet
 
+### [HubTee](devices/hubtee.md)
+
+A USB / MIDI / Ethernet hub with clock.
+
 ### [VoiceTee](devices/voicetee.md)
 
 A small mic preamp module that connects to MixTee or SynTee inputs.
 
-- ADS combo inputs with phantom power
-- USB powered, fully analogue signal path
-- 2 pots for gain control, 1 switch for phantom power
-- Connects via double TR 1/4" coupler
-
 ### [StringTee](devices/stringtee.md)
 
 A small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
-
-- 1/4" TS high-impedance input (instrument level)
-- USB powered, fully analogue signal path
-- 1 pot for gain control
-- Connects via double TR 1/4" coupler
 
 ## Ecosystem
 
