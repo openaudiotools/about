@@ -13,7 +13,7 @@ A digital audio mixer, recorder, and USB audio interface. Designed to be used wi
 | Recording | 16-track to SD card (WAV / RF64) |
 | Ethernet | 100 Mbps (all channels available over network) |
 | MIDI | 3.5 mm TRS Type A In/Out + USB MIDI via XMOS + 2× USB-A host |
-| Display | 4.3" touchscreen (ESP32-S3 + LVGL) |
+| Display | 4.3" 800x480 touchscreen ([DESPEE](https://github.com/openaudiotools/despee) module) |
 | Controls | 3 rotary encoders, 16 CHOC key switches with NeoPixel LEDs |
 | Power | USB-C PD 5 V / 5 A (STUSB4500) |
 | Dimensions | 260 × 100 × 50 mm |
@@ -22,7 +22,7 @@ A digital audio mixer, recorder, and USB audio interface. Designed to be used wi
 
 - **Teensy 4.1** — ARM Cortex-M7 @ 600 MHz, main processor for DSP, mixer logic, recording, and network.
 - **XMOS XU216-256-TQ128-C20** — USB Audio Class 2 bridge (24-in/8-out + USB MIDI composite). Firmware: [xmos/sw_usb_audio](https://github.com/xmos/sw_usb_audio). Thesycon ASIO driver for Windows.
-- **ESP32-S3 display module** — Runs LVGL UI; receives meter data + parameter state from Teensy over UART at 30 Hz.
+- **[DESPEE](https://github.com/openaudiotools/despee) display module** — Runs LVGL UI; receives meter data + parameter state from Teensy over UART at 30 Hz.
 - **4× AK4619VN codecs** — 4-in/4-out each, arranged as 2 per TDM bus (SAI1 + SAI2). U1/U2 full ADC+DAC, U3/U4 ADC-only.
 
 ## Audio Architecture

@@ -48,6 +48,7 @@ Each device focuses on one function and does it well. No frills, reasonable cost
 - **TRS 1/8" Type A** for MIDI
 - **Ethernet** for system integration
 - **USB-A MIDI Host** when possible
+- **[DESPEE](https://github.com/openaudiotools/despee)** display module for touchscreen UI
 
 ### Modular
 

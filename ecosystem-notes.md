@@ -38,9 +38,10 @@ Working document cataloging the open-source ecosystem used across the OpenAudioT
 - **Where used:** Main processor for all firmware — audio DSP, mixer control, SD recording, USB host, Ethernet, I2C codec control.
 - **Link:** <https://www.pjrc.com/store/teensy41.html>
 
-### ESP32-S3
-- **What:** Espressif Wi-Fi/BLE SoC used as a display co-processor.
-- **Where used:** Runs the LVGL-based touchscreen UI on an integrated display module (e.g., Waveshare ESP32-S3-Touch-LCD-4.3 800×480). Connected to Teensy via UART (Serial1, pins 0/1) at 30 Hz meter update rate.
+### DESPEE (ESP32-S3 Display Module)
+- **What:** Standard display module for all Open Audio Tools devices. Custom PCB with ESP32-S3-WROOM-1-N16R8 + bare 4.3" 800×480 LCD. Runs a device-agnostic LVGL display engine — no device-specific knowledge on the module itself.
+- **Where used:** Touchscreen UI across all devices. Teensy streams binary widget commands (COBS-encoded, CRC16) over UART. Touch events forwarded as coordinates.
+- **Link:** <https://github.com/openaudiotools/despee>
 
 ### XMOS XU216-256-TQ128-C20
 - **What:** Multi-core xCore processor for real-time USB audio.
@@ -72,7 +73,7 @@ Working document cataloging the open-source ecosystem used across the OpenAudioT
 
 ### LVGL (Light and Versatile Graphics Library)
 - **What:** Embedded graphics library with widget toolkit and touch support.
-- **Where used:** Display rendering on the ESP32-S3 module — meters, channel strips, navigation.
+- **Where used:** Display rendering on the DESPEE display module (ESP32-S3) — meters, channel strips, navigation.
 - **Link:** <https://lvgl.io>
 
 ### Adafruit NeoPixel / FastLED

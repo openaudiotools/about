@@ -10,6 +10,7 @@ A standalone virtual sound module / synthesizer with basic controls.
 | LR Out | Stereo audio output |
 | MIDI In | MIDI input |
 | MIDI Out | MIDI output |
+| Display | 4.3" 800x480 touchscreen ([DESPEE](https://github.com/openaudiotools/despee) module) |
 | ETH | Ethernet |
 | Power | USB power |
 
@@ -28,6 +29,7 @@ The SynTee is a self-contained synthesizer module that can operate standalone or
 ## Hardware Platform
 
 - **Teensy 4.1** — ARM Cortex-M7 @ 600 MHz with native 100 Mbps Ethernet (DP83825I PHY).
+- **[DESPEE](https://github.com/openaudiotools/despee) display module** — 4.3" 800×480 touchscreen running a device-agnostic LVGL display engine. Connected to Teensy via UART.
 - Audio-capable device: participates in PTP clock synchronization as a slave.
 
 ## Integration
