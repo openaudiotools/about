@@ -215,3 +215,21 @@ All network services fit comfortably alongside the existing audio DSP workload:
 **Star via switch** — Multiple SynTees, a MixTee, and a computer all plugged into a cheap Ethernet switch. Every device discovers every other device automatically. The MixTee is PTP grandmaster.
 
 **Star via HubTee** — The HubTee acts as the central hub, connecting SynTees, computers, and MIDI controllers. It bridges USB/DIN MIDI onto the network and can run the patchbay UI for the whole setup.
+
+### Connectivity diagrams
+
+**HubTee as central hub** — Multiple devices (SynTees, computers) connected through the HubTee via Ethernet and MIDI.
+
+![Using the HubTee](images/example_hubtee.png)
+
+**MixTee with USB** — Audio routed via USB in/out to a computer, MIDI connections to controllers and synths.
+
+![Using the MixTee (USB)](images/example_mixtee_usb.png)
+
+**MixTee with Ethernet (direct)** — Audio transported over Ethernet to a computer, with separate MIDI connections to devices.
+
+![Using the MixTee (ETH Direct)](images/example_mixtee_eth_direct.png)
+
+**MixTee with Ethernet (switch)** — Audio and MIDI both carried over Ethernet using a network switch, single-cable setup between all devices.
+
+![Using the MixTee (ETH Switch)](images/example_mixtee_eth_switch.png)

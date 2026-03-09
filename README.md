@@ -132,20 +132,3 @@ A small guitar/instrument preamp module that connects to MixTee or SynTee inputs
 
 See [Ecosystem Notes](ecosystem-notes.md) for a full catalog of the open-source hardware, firmware, and software used across the project.
 
-## Connectivity Examples
-
-**HubTee as central hub** — Multiple devices (SynTees, computers) connected through the HubTee via Ethernet and MIDI.
-
-![Using the HubTee](images/example_hubtee.png)
-
-**MixTee with USB** — Audio routed via USB in/out to a computer, MIDI connections to controllers and synths.
-
-![Using the MixTee (USB)](images/example_mixtee_usb.png)
-
-**MixTee with Ethernet (direct)** — Audio transported over Ethernet to a computer, with separate MIDI connections to devices.
-
-![Using the MixTee (ETH Direct)](images/example_mixtee_eth_direct.png)
-
-**MixTee with Ethernet (switch)** — Audio and MIDI both carried over Ethernet using a network switch, single-cable setup between all devices.
-
-![Using the MixTee (ETH Switch)](images/example_mixtee_eth_switch.png)
