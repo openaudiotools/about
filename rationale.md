@@ -2,11 +2,9 @@
 
 I'm a hobby musician, and I love tinkering with electronics and DIY gear. Naturally, I found myself drawn into the world of DIY audio and music hardware — a vibrant, generous, creative community of people building their own instruments, sharing schematics, writing firmware, pushing the limits of cheap hardware into unexpected territory. I bought some of it. I built some of it. I love that world.
 
-But I also kept running into the same frustrations, in different forms.
-
 ## The Gap
 
-> The gap between *"fun to experiment with"* and *"robust enough to actually use"* is real. And nobody is quite filling it.
+I noticed the gap between *"fun to experiment with"* and *"robust enough to actually use"*.
 
 Some DIY devices are **gloriously experimental** — glitchy, unpredictable, perfect for an exploratory jam or an interesting video. But they're not controllable enough to build a finished track around.
 
@@ -16,13 +14,19 @@ Then there's the **expensive end**: robust, modular, genuinely powerful — but 
 
 And finally there are the **ambitious all-in-one platforms** — remarkable achievements, but built on a sprawling stack of dependencies that becomes increasingly daunting to maintain over time.
 
-None of these are failures. They're honest tradeoffs made by people doing their best work.
+None of these are failures. They're honest tradeoffs made by people doing their best work. But I wanted something more robust.
+
+![](https://media1.tenor.com/m/SC2HUvIEo-cAAAAd/i-need-something-robust-complicated.gif)
+
+
 
 ## Openness as a Strategy
 
 Many small-manufacturer and tinkerer projects — even ones built on open-source tools — keep their hardware designs and firmware closed. That's an understandable choice; it protects the work and the business. But it limits who can build, distribute, and improve them.
 
 I want OpenAudioTools to be different: **fully open hardware and firmware**, so that anyone can manufacture these devices, sell them, adapt them, and grow the ecosystem. More supply means lower prices. More builders means faster improvement. Openness isn't just a value here — it's a strategy for adoption.
+
+
 
 ## The Design Principles
 

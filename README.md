@@ -4,7 +4,7 @@ Open Audio Tools is an open-source hardware and software platform for music, har
 
 ## The "WHY"
 
-OpenAudioTools is an open-source hardware and software platform for building music tools that are simple, robust, and truly open — free for anyone to build, manufacture, and extend. Born out of frustration with DIY gear that is either too experimental, too niche, too expensive, or too fragile to maintain, it takes a different approach: one focused device, one job done well, built on open standards, designed to work with the controllers you already own. [read more...](rationale.md)
+OpenAudioTools is an open-source hardware and software platform for building music tools that are simple, robust, and truly open — free for anyone to build, manufacture, and extend. Born out of need for robust, non experimental and open diy gear. Focused devices, one job done well, built on open standards, designed to work with the controllers you already own. [read more...](rationale.md)
 
 ## Core Principles
 
