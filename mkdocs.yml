@@ -4,17 +4,7 @@ site_description: Open-source hardware and software platform for music creators
 repo_url: https://github.com/openaudiotools/about
 repo_name: openaudiotools/about
 
-docs_dir: .
-site_dir: site
-
-exclude_docs: |
-  CLAUDE.md
-  .claude/
-  .temp/
-  openaudiotools.pdf
-  requirements.txt
-  .gitignore
-  .github/
+docs_dir: docs
 
 nav:
   - Overview: README.md
