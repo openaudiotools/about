@@ -36,7 +36,7 @@ The HubTee serves as the central nervous system of an OpenAudioTools studio setu
 
 ## Connectivity Example
 
-Multiple devices ([SynTees](syntee.md), computers, [MixTees](mixtee.md)) connected through the HubTee via Ethernet and MIDI, creating a centralized studio network.
+Multiple devices ([SynTees](https://github.com/openaudiotools/syntee), computers, [MixTees](https://github.com/openaudiotools/mixtee)) connected through the HubTee via Ethernet and MIDI, creating a centralized studio network.
 
 See [Networking](../networking.md) for protocol details and [Ecosystem Notes](../ecosystem-notes.md) for the full technology stack.
 

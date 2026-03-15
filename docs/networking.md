@@ -139,13 +139,13 @@ This runs alongside audio on the same Ethernet cable. CPU cost is under 1%.
 
 Each device type has a defined network personality:
 
-### Synth ([SynTee](devices/syntee.md))
+### Synth ([SynTee](https://github.com/openaudiotools/syntee))
 
 - Publishes 1–N audio TX streams (main and aux outputs).
 - Publishes one MIDI endpoint (`dir=inout`, `ep=synth`).
 - Optionally browses for controllers to auto-pair.
 
-### Mixer ([MixTee](devices/mixtee.md))
+### Mixer ([MixTee](https://github.com/openaudiotools/mixtee))
 
 - Acts as PTP grandmaster.
 - Publishes multiple audio streams — both RX (inputs) and TX (buses, mains, auxes).

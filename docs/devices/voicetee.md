@@ -1,6 +1,6 @@
 # VoiceTee
 
-A small microphone preamp module that connects to [MixTee](mixtee.md) or [SynTee](syntee.md) inputs.
+A small microphone preamp module that connects to [MixTee](https://github.com/openaudiotools/mixtee) or [SynTee](https://github.com/openaudiotools/syntee) inputs.
 
 ## Overview
 
@@ -22,7 +22,7 @@ Follows the OpenAudioTools "modular" principle — specific-purpose functionalit
 
 ## Integration
 
-- Plugs directly into a [MixTee](mixtee.md) or [SynTee](syntee.md) 1/4" TRS input via a double TR coupler.
+- Plugs directly into a [MixTee](https://github.com/openaudiotools/mixtee) or [SynTee](https://github.com/openaudiotools/syntee) 1/4" TRS input via a double TR coupler.
 - USB powered — uses the same unified USB power approach as the rest of the ecosystem.
 
 ## License

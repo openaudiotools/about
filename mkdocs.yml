@@ -10,9 +10,8 @@ nav:
   - Overview: README.md
   - Rationale: rationale.md
   - Devices:
-      - MixTee: devices/mixtee.md
+      - Overview: devices/index.md
       - HubTee: devices/hubtee.md
-      - SynTee: devices/syntee.md
       - VoiceTee: devices/voicetee.md
       - StringTee: devices/stringtee.md
   - Networking: networking.md
