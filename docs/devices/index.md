@@ -9,6 +9,7 @@ The OpenAudioTools ecosystem consists of five devices. Some have graduated to th
 Digital audio mixer, recorder, and USB audio interface.
 
 **Status:** Active development
+
 | | |
 |---|---|
 | Repo | [openaudiotools/mixtee](https://github.com/openaudiotools/mixtee) |
@@ -21,6 +22,7 @@ Digital audio mixer, recorder, and USB audio interface.
 Standalone virtual sound module / synthesizer.
 
 **Status:** Active development
+
 | | |
 |---|---|
 | Repo | [openaudiotools/syntee](https://github.com/openaudiotools/syntee) |
@@ -43,6 +45,7 @@ USB / MIDI / Ethernet hub with clock. Central routing and connectivity hub for t
 Small microphone preamp module that connects to MixTee or SynTee inputs.
 
 **Status:** Concept
+
 | | |
 |---|---|
 | Issue | [openaudiotools/about#4](https://github.com/openaudiotools/about/issues/4) |
@@ -56,6 +59,7 @@ Small microphone preamp module that connects to MixTee or SynTee inputs.
 Small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
 
 **Status:** Concept
+
 | | |
 |---|---|
 | Issue | [openaudiotools/about#5](https://github.com/openaudiotools/about/issues/5) |
