@@ -14,6 +14,7 @@ Digital audio mixer, recorder, and USB audio interface.
 |---|---|
 | Repo | [openaudiotools/mixtee](https://github.com/openaudiotools/mixtee) |
 | Issue | [openaudiotools/about#2](https://github.com/openaudiotools/about/issues/2) |
+| Discussion | [MixTEE](https://github.com/openaudiotools/about/discussions/categories/mixtee) |
 
 ---
 
@@ -27,6 +28,7 @@ Standalone virtual sound module / synthesizer.
 |---|---|
 | Repo | [openaudiotools/syntee](https://github.com/openaudiotools/syntee) |
 | Issue | [openaudiotools/about#1](https://github.com/openaudiotools/about/issues/1) |
+| Discussion | [SynTEE](https://github.com/openaudiotools/about/discussions/categories/syntee) |
 
 ---
 
@@ -35,6 +37,11 @@ Standalone virtual sound module / synthesizer.
 USB / MIDI / Ethernet hub with clock. Central routing and connectivity hub for the OpenAudioTools ecosystem.
 
 **Status:** Concept
+
+| | |
+|---|---|
+| Issue | [openaudiotools/about#6](https://github.com/openaudiotools/about/issues/6) |
+| Discussion | [HubTEE](https://github.com/openaudiotools/about/discussions/categories/hubtee) |
 
 [Read more &rarr;](hubtee.md)
 
@@ -49,6 +56,7 @@ Small microphone preamp module that connects to MixTee or SynTee inputs.
 | | |
 |---|---|
 | Issue | [openaudiotools/about#4](https://github.com/openaudiotools/about/issues/4) |
+| Discussion | [VoiceTee](https://github.com/openaudiotools/about/discussions/categories/voicee) |
 
 [Read more &rarr;](voicetee.md)
 
@@ -63,5 +71,6 @@ Small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
 | | |
 |---|---|
 | Issue | [openaudiotools/about#5](https://github.com/openaudiotools/about/issues/5) |
+| Discussion | [StringTee](https://github.com/openaudiotools/about/discussions/categories/stringee) |
 
 [Read more &rarr;](stringtee.md)

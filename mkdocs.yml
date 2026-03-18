@@ -14,6 +14,9 @@ nav:
   - Networking: networking.md
   - Ecosystem Notes: ecosystem-notes.md
   - Contributing: contributing.md
+  - AI Journal: https://github.com/openaudiotools/about/tree/main/docs/journal
+  - Discussions: https://github.com/openaudiotools/about/discussions
+  - Project: https://github.com/orgs/openaudiotools/projects/2
 
 theme:
   name: material

@@ -1,10 +1,10 @@
 # Contributing
 
-Open Audio Tools is a community-driven project — we welcome contributions from electronics engineers, firmware developers, product designers, musicians, and audio engineers, whether professional or hobbyist.
+I'm looking for people who find this project interesting and want to help shape it — electronics folks, firmware developers, product designers, musicians, audio engineers. Professional or hobbyist, doesn't matter. If you care about open, buildable audio gear, you're welcome here.
 
-## Join the conversation
+## Start with the discussions
 
-The best way to start is by joining the [GitHub Discussions](https://github.com/openaudiotools/about/discussions). Each device has its own discussion category:
+The single best thing you can do is join the [GitHub Discussions](https://github.com/openaudiotools/about/discussions) and share your thoughts. Each device has its own category:
 
 | Device | Discussion | Status |
 |--------|-----------|--------|
@@ -15,32 +15,24 @@ The best way to start is by joining the [GitHub Discussions](https://github.com/
 | [VoiceTee](devices/voicetee.md) | [VoiceTee Discussions](https://github.com/openaudiotools/about/discussions/categories/voicee) | Concept |
 | [StringTee](devices/stringtee.md) | [StringTee Discussions](https://github.com/openaudiotools/about/discussions/categories/stringee) | Concept |
 
-Your feedback, ideas, and critique are extremely valuable — this is the best place to share them. All well-articulated and reasoned proposals and contributions will be considered.
+Your feedback is really valuable to me. I will consider all well-articulated and reasoned proposals and contributions. Tell me what you think — what's good, what's missing, what doesn't make sense.
 
-## How you can help
+## Where I need help
 
-### Musicians & audio engineers
+**Musicians and audio engineers** — you know how this stuff gets used in practice. What matters in a mixer? What's annoying about the gear you have? What would you actually want to build? That kind of input directly shapes what these devices become.
 
-You know what matters in real-world audio workflows. Your input on device features, ergonomics, and use cases helps shape what we build. Share your experience in the discussions — tell us what works, what doesn't, and what's missing from the tools you use today.
+**Electronics and PCB design** — if you know your way around CAD or PCB layout and the project catches your eye, I'd love to have you on board. Once the device specs are finalized, there will be real work to do on schematics, board layout, and prototyping.
 
-### Electronics & PCB design
-
-If you know your way around CAD or PCB design and find the project interesting, we'd love your help. Once device specifications are finalized, we'll need hands-on contributors for schematic review, PCB layout, and hardware prototyping.
-
-### Software & firmware
-
-Software and firmware are at the heart of every device. Discussions about architecture, DSP, networking, and embedded development are very welcome — this is also where the maintainer can contribute most directly. Check out the device repositories:
+**Software and firmware** — this is where I can contribute the most myself, and where I'm most keen to have discussions. Architecture, DSP, networking, embedded dev — all of it. The repos are here:
 
 - [openaudiotools/mixtee](https://github.com/openaudiotools/mixtee)
 - [openaudiotools/syntee](https://github.com/openaudiotools/syntee)
 - [openaudiotools/despee](https://github.com/openaudiotools/despee)
 
-### Product design
-
-If you have experience with enclosure design, user interfaces, or manufacturing processes, your perspective is welcome. We want these devices to be easy to build, easy to use, and easy to produce.
+**Product design** — enclosures, user interfaces, manufacturing. If you have experience there, your perspective would be really helpful. These devices should be easy to build and easy to use.
 
 ## Get in touch
 
-If you'd like to help directly with the project, reach out on Discord: **@juliuszfedyk**
+Want to help directly? Reach me on Discord: **@juliuszfedyk**
 
-Or simply jump into the [Discussions](https://github.com/openaudiotools/about/discussions) — that's where most of the collaboration happens.
+Or just jump into the [Discussions](https://github.com/openaudiotools/about/discussions) — that's where it all happens.

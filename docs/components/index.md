@@ -14,3 +14,4 @@ ESP32-S3 display board with a 4.3" 800×480 capacitive touch LCD and 3 rotary en
 |---|---|
 | Repo | [openaudiotools/despee](https://github.com/openaudiotools/despee) |
 | Issue | [openaudiotools/about#3](https://github.com/openaudiotools/about/issues/3) |
+| Discussion | [DESPEE](https://github.com/openaudiotools/about/discussions/categories/despee) |
