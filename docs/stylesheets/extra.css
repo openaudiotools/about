@@ -21,17 +21,3 @@
   --md-accent-fg-color: #e63946;
   --md-accent-fg-color--transparent: rgba(230, 57, 70, 0.1);
 }
-
-/* Overview page logo — show light version by default, dark version in slate */
-[data-md-color-scheme="slate"] .logo-light {
-  display: none;
-}
-[data-md-color-scheme="slate"] .logo-dark {
-  display: block;
-}
-[data-md-color-scheme="default"] .logo-dark {
-  display: none;
-}
-[data-md-color-scheme="default"] .logo-light {
-  display: block;
-}

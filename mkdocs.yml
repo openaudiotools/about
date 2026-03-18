@@ -16,7 +16,7 @@ nav:
 
 theme:
   name: material
-  logo: images/logos/oatlogo1a_tiny.png
+  logo: images/logos/dark_oatlogo1a_tiny_transparrent_nowhitespace.png
   favicon: images/logos/oatlogo1a_tiny.png
   palette:
     - scheme: default
