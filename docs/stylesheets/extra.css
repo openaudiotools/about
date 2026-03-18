@@ -1,0 +1,23 @@
+/* Light mode — Oxford Navy primary, Punch Red accent */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1d3557;
+  --md-primary-fg-color--light: #457b9d;
+  --md-primary-fg-color--dark: #1d3557;
+  --md-primary-bg-color: #f1faee;
+  --md-primary-bg-color--light: #f1faee;
+  --md-accent-fg-color: #e63946;
+  --md-accent-fg-color--transparent: rgba(230, 57, 70, 0.1);
+  --md-default-bg-color: #f1faee;
+  --md-default-bg-color--light: #f1faee;
+}
+
+/* Dark mode — Oxford Navy base, Punch Red accent */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1d3557;
+  --md-primary-fg-color--light: #457b9d;
+  --md-primary-fg-color--dark: #1d3557;
+  --md-primary-bg-color: #f1faee;
+  --md-primary-bg-color--light: #f1faee;
+  --md-accent-fg-color: #e63946;
+  --md-accent-fg-color--transparent: rgba(230, 57, 70, 0.1);
+}

@@ -9,26 +9,21 @@ docs_dir: docs
 nav:
   - Overview: README.md
   - Rationale: rationale.md
-  - Devices:
-      - Overview: devices/index.md
-      - HubTee: devices/hubtee.md
-      - VoiceTee: devices/voicetee.md
-      - StringTee: devices/stringtee.md
+  - Devices: devices/index.md
+  - Components: components/index.md
   - Networking: networking.md
   - Ecosystem Notes: ecosystem-notes.md
 
 theme:
   name: material
+  logo: images/logos/oatlogo1a_tiny.png
+  favicon: images/logos/oatlogo1a_tiny.png
   palette:
     - scheme: default
-      primary: deep purple
-      accent: amber
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: deep purple
-      accent: amber
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -38,6 +33,9 @@ theme:
     - search.highlight
     - search.suggest
     - content.tabs.link
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search

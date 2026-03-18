@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="images/logos/oatlogo1a_small.png" alt="Open Audio Tools" width="300">
+</div>
+
 # Open Audio Tools
 
 Open Audio Tools is an open-source hardware and software platform for music, hardware, and software creators around the world. Designed to be easily produced and self-built.
