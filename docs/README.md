@@ -1,5 +1,6 @@
 <div align="center">
-  <img src="images/logos/oatlogo1a_small.png" alt="Open Audio Tools" width="300">
+  <img src="images/logos/oatlogo1a_small.png" alt="Open Audio Tools" width="300" class="logo-light">
+  <img src="images/logos/dark_oatlogo1_small_transparrent.png" alt="Open Audio Tools" width="300" class="logo-dark">
 </div>
 
 # Open Audio Tools
