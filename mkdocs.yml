@@ -13,6 +13,7 @@ nav:
   - Components: components/index.md
   - Networking: networking.md
   - Ecosystem Notes: ecosystem-notes.md
+  - Contributing: contributing.md
 
 theme:
   name: material
