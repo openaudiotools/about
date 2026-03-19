@@ -29,7 +29,7 @@ jobs:
       - name: Fetch project status
         run: python scripts/fetch_project_status.py
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.PROJECT_READ_TOKEN }}
 
       - run: mkdocs build --strict
 
