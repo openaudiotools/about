@@ -21,3 +21,107 @@
   --md-accent-fg-color: #e63946;
   --md-accent-fg-color--transparent: rgba(230, 57, 70, 0.1);
 }
+
+/* ── Carousel ─────────────────────────────────────────────── */
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 1.5rem auto;
+  border-radius: 0.5rem;
+}
+
+.carousel-track {
+  display: flex;
+  width: 300%; /* 3 cards */
+  animation: carousel-scroll 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.carousel:hover .carousel-track,
+.carousel:focus-within .carousel-track {
+  animation-play-state: paused;
+}
+
+.carousel-card {
+  flex: 0 0 calc(100% / 3);
+  box-sizing: border-box;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  background: var(--md-primary-fg-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--md-primary-bg-color);
+}
+
+.carousel-card p {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--md-primary-bg-color--light);
+}
+
+.carousel-card .carousel-btn {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid var(--md-primary-bg-color);
+  border-radius: 0.25rem;
+  color: var(--md-primary-bg-color);
+  font-weight: 500;
+  font-size: 0.7rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.carousel-card .carousel-btn:hover {
+  background: var(--md-primary-bg-color);
+  color: var(--md-primary-fg-color);
+}
+
+/* Keyframes */
+@keyframes carousel-scroll {
+  0%, 30%    { transform: translateX(0); }
+  33%, 63%   { transform: translateX(-33.333%); }
+  66%, 96%   { transform: translateX(-66.666%); }
+  100%       { transform: translateX(0); }
+}
+
+/* Reduced motion: disable animation, allow horizontal scroll */
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-track {
+    animation: none;
+  }
+
+  .carousel-card {
+    scroll-snap-align: center;
+  }
+
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .carousel-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .carousel-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .carousel-card p {
+    font-size: 0.85rem;
+  }
+}

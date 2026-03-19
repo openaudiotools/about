@@ -6,6 +6,26 @@
 
 Open Audio Tools is an open-source hardware and software platform for music, hardware, and software creators around the world. Designed to be easily produced and self-built.
 
+<div class="carousel">
+  <div class="carousel-track">
+    <div class="carousel-card">
+      <h3>SynTee</h3>
+      <p>Standalone virtual sound module and synthesizer — built around the Teensy platform with multi-voice polyphony, real-time effects, and full MIDI control</p>
+      <a class="carousel-btn" href="https://github.com/openaudiotools/syntee">View on GitHub →</a>
+    </div>
+    <div class="carousel-card">
+      <h3>MixTee</h3>
+      <p>Digital audio mixer, recorder, and USB audio interface — 16 inputs, 8 outputs, designed to be driven by MIDI controllers with all channels available over Ethernet</p>
+      <a class="carousel-btn" href="https://github.com/openaudiotools/mixtee">View on GitHub →</a>
+    </div>
+    <div class="carousel-card">
+      <h3>DESPEE</h3>
+      <p>ESP32-S3 display board with touch LCD and rotary encoders — offloads the user interface from the audio controller so each device stays focused on its core task</p>
+      <a class="carousel-btn" href="https://github.com/openaudiotools/despee">View on GitHub →</a>
+    </div>
+  </div>
+</div>
+
 ## The "WHY"
 
 OpenAudioTools is an open-source hardware and software platform for building music tools that are simple, robust, and truly open — free for anyone to build, manufacture, and extend. Born out of need for robust, non experimental and open diy gear. Focused devices, one job done well, built on open standards, designed to work with the controllers you already own. [read more...](rationale.md)
