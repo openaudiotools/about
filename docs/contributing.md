@@ -31,6 +31,33 @@ I'd love to hear your thoughts — whether it's high-level ideas about what thes
 
 **Product design** — enclosures, user interfaces, manufacturing. If you have experience there, your perspective would be really helpful. These devices should be easy to build and easy to use.
 
+## Repository structure
+
+Each device repo follows the same layout:
+
+```
+device-name/
+├── hardware/
+│   ├── pcbs/              # KiCad projects, one subfolder per board
+│   │   └── board-name/
+│   │       ├── designs/   # KiCad schematic + PCB files
+│   │       ├── architecture.md
+│   │       └── connections.md
+│   ├── lib/               # Custom KiCad footprint libraries
+│   └── *-layout.*         # Physical layout drawings (SVG, PNG)
+├── firmware/
+│   ├── src/               # Application source code
+│   ├── lib/               # Local libraries
+│   └── platformio.ini     # Build configuration (PlatformIO)
+├── docs/
+│   ├── hardware.md        # Hardware design notes
+│   ├── firmware.md        # Firmware architecture notes
+│   └── journal/           # Timestamped development log entries
+└── README.md
+```
+
+The `hardware/pcbs/` folder contains one subfolder per physical board in the device — for example, MixTEE has separate boards for input, output, headphone amp, and more. Each board subfolder has its own KiCad project, architecture description, and connection map.
+
 ## Get in touch
 
 Want to help directly? Reach me on Discord: **@juliuszfedyk**
