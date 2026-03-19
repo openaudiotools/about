@@ -21,9 +21,17 @@ Open Audio Tools is a side project — I contribute as much time as I can
 but have other priorities. The goal is to reach a working prototype by the
 end of 2026.
 
-For the full project board, see
-[GitHub Projects](https://github.com/orgs/openaudiotools/projects/2).
+**[Project Board](https://github.com/orgs/openaudiotools/projects/2)** · **[Journal](journal/README.md)**
 """
+
+# Devices with dedicated repos (org-level)
+REPO_DEVICES = {"syntee", "mixtee", "despee"}
+# Concept devices with local spec files
+CONCEPT_DEVICES = {
+    "voicetee": "devices/voicetee.md",
+    "stringtee": "devices/stringtee.md",
+    "hubtee": "devices/hubtee.md",
+}
 
 QUERY = """
 query {
@@ -68,8 +76,8 @@ FALLBACK_PAGE = INTRO + """
 !!! warning "Live data unavailable"
 
     Could not fetch project data from GitHub. Visit the
-    [project board](https://github.com/orgs/openaudiotools/projects/2)
-    to see current initiative status.
+    [Project Board](https://github.com/orgs/openaudiotools/projects/2)
+    to see current device status.
 """
 
 
@@ -111,49 +119,40 @@ def get_phases(fields_nodes: list) -> list[dict]:
     return []
 
 
-def build_page(project: dict, items: list[dict]) -> str:
-    fields_nodes = (project.get("fields") or {}).get("nodes", [])
-    phases = get_phases(fields_nodes)
+def device_link(title: str) -> str:
+    """Return a markdown link to the device repo or concept file."""
+    key = title.lower().replace(" ", "")
+    if key in REPO_DEVICES:
+        return f"[repo](https://github.com/openaudiotools/{key})"
+    if key in CONCEPT_DEVICES:
+        return f"[concept]({CONCEPT_DEVICES[key]})"
+    return ""
 
+
+def build_page(project: dict, items: list[dict]) -> str:
     lines = [INTRO]
 
-    # Phases table
-    if phases:
-        lines.append("## Phases\n")
-        lines.append("| Phase | Description |")
-        lines.append("|-------|-------------|")
-        for phase in phases:
-            desc = phase.get("description") or ""
-            lines.append(f"| {phase['name']} | {desc} |")
-        lines.append("")
-
-    # Group items by initiative_status (phase)
-    phase_order = [p["name"] for p in phases] if phases else []
-    groups: dict[str, list] = {}
-    for item in items:
-        key = item["initiative_status"] or "Other"
-        groups.setdefault(key, []).append(item)
-
-    # Order: phases in board order, then any extras alphabetically
-    ordered_keys = [k for k in phase_order if k in groups]
-    extras = sorted(k for k in groups if k not in phase_order)
-    ordered_keys.extend(extras)
-
-    if ordered_keys:
-        lines.append("## Initiatives\n")
-        for key in ordered_keys:
-            lines.append(f"### {key}\n")
-            lines.append("| Initiative | Repository | Status |")
-            lines.append("|------------|------------|--------|")
-            for item in groups[key]:
-                cell = f"[{item['title']}]({item['url']})" if item["url"] else item["title"]
-                lines.append(f"| {cell} | {item['repo']} | {item['status']} |")
-            lines.append("")
-    elif not items:
+    if not items:
         lines.append(
             "!!! note\n\n"
             "    No items found in the project board.\n"
         )
+        return "\n".join(lines)
+
+    lines.append("## Devices\n")
+    lines.append("| Device | Status | Link |")
+    lines.append("|--------|--------|------|")
+    for item in items:
+        status = item["initiative_status"] or item["status"] or ""
+        if item["url"] and status:
+            status_cell = f"[{status}]({item['url']})"
+        elif item["url"]:
+            status_cell = f"[link]({item['url']})"
+        else:
+            status_cell = status
+        link_cell = device_link(item["title"])
+        lines.append(f"| {item['title']} | {status_cell} | {link_cell} |")
+    lines.append("")
 
     return "\n".join(lines)
 
