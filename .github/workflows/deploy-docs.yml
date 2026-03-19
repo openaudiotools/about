@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  projects: read
 
 concurrency:
   group: pages
@@ -25,6 +26,11 @@ jobs:
           python-version: "3.12"
 
       - run: pip install -r requirements.txt
+
+      - name: Fetch project status
+        run: python scripts/fetch_project_status.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - run: mkdocs build --strict
 

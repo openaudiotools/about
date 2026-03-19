@@ -13,6 +13,7 @@ nav:
   - Components: components/index.md
   - Networking: networking.md
   - Ecosystem Notes: ecosystem-notes.md
+  - Status: status.md
   - Contributing: contributing.md
   - AI Journal: https://github.com/openaudiotools/about/tree/main/docs/journal
   - Discussions: https://github.com/openaudiotools/about/discussions

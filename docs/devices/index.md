@@ -8,7 +8,7 @@ The OpenAudioTools ecosystem consists of five devices. Some have graduated to th
 
 Digital audio mixer, recorder, and USB audio interface.
 
-**Status:** Active development
+**Status:** Product Design
 
 | | |
 |---|---|
@@ -22,7 +22,7 @@ Digital audio mixer, recorder, and USB audio interface.
 
 Standalone virtual sound module / synthesizer.
 
-**Status:** Active development
+**Status:** Product Design
 
 | | |
 |---|---|
