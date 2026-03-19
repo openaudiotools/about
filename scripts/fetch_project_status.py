@@ -28,6 +28,7 @@ end of 2026.
 REPO_DEVICES = {"syntee", "mixtee", "despee"}
 # Concept devices with local spec files
 CONCEPT_DEVICES = {
+    "voicee": "devices/voicetee.md",
     "voicetee": "devices/voicetee.md",
     "stringtee": "devices/stringtee.md",
     "hubtee": "devices/hubtee.md",
