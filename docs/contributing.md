@@ -15,7 +15,7 @@ The single best thing you can do is join the [GitHub Discussions](https://github
 | [VoiceTee](devices/voicetee.md) | [VoiceTee Discussions](https://github.com/openaudiotools/about/discussions/categories/voicee) | Concept |
 | [StringTee](devices/stringtee.md) | [StringTee Discussions](https://github.com/openaudiotools/about/discussions/categories/stringee) | Concept |
 
-Your feedback is really valuable to me. I will consider all well-articulated and reasoned proposals and contributions. Tell me what you think — what's good, what's missing, what doesn't make sense.
+I'd love to hear your thoughts — whether it's high-level ideas about what these devices should do, or specific opinions on implementation details like component choices, circuit topologies, and design trade-offs. I especially appreciate constructive technical critique and concrete proposals. If you've worked with a particular codec, MCU, or connector and have a take on why it does or doesn't fit here, that kind of input is incredibly helpful.
 
 ## Where I need help
 
