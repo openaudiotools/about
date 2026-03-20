@@ -28,14 +28,14 @@ The network is IPv4-only, single LAN, no routing. UDP handles all real-time traf
 Devices use DHCP when a server is available and fall back to IPv4 link-local (`169.254.x.x`, RFC 3927) when it is not. Either way, every device registers a human-readable hostname via mDNS:
 
 ```
-device-type-XXXX.local
+model-XXXX.local
 ```
 
 where `XXXX` is derived from the last four hex digits of the MAC address. Examples:
 
-- `mixer-01b7.local`
-- `synth-a3f2.local`
-- `hub-c4e1.local`
+- `mixtee-01b7.local`
+- `syntee-a3f2.local`
+- `hubtee-c4e1.local`
 - `ctrl-92cc.local`
 
 No manual IP assignment is ever needed.
@@ -59,7 +59,7 @@ The `_jfa-` prefix is project-specific to avoid collisions with other mDNS servi
 
 | Key | Values | Meaning |
 |-----|--------|---------|
-| `role` | `synth`, `mixer`, `hub` | What kind of device |
+| `model` | `syntee`, `mixtee`, `hubtee` | What kind of device |
 | `dir` | `tx`, `rx`, `txrx` | Stream direction |
 | `ch` | `2`, `8`, `16` | Channel count |
 | `sr` | `48000` | Sample rate |
@@ -73,28 +73,42 @@ The `_jfa-` prefix is project-specific to avoid collisions with other mDNS servi
 |-----|--------|---------|
 | `dir` | `in`, `out`, `inout` | Endpoint direction |
 | `ump` | `2.0` | UMP version |
-| `ep` | `synth`, `mixer`, `ctrl`, `hub` | Endpoint role |
+| `model` | `syntee`, `mixtee`, `ctrl`, `hubtee` | Endpoint model |
 | `ch` | number | Logical channel count or groups |
 
 ### Example service names
 
 ```
-Synth Out 1-2._jfa-audio._udp.local
-Mixer Main._jfa-audio._udp.local
+SynTEE Out 1-2._jfa-audio._udp.local
+MixTEE Main._jfa-audio._udp.local
 Main Controller._jfa-midi2._udp.local
 ```
 
-Devices can also browse for peer services to auto-pair — a fader controller discovers the mixer's MIDI endpoint and connects without user intervention.
+Devices can also browse for peer services to auto-pair — a fader controller discovers the MixTEE's MIDI endpoint and connects without user intervention.
 
 ---
 
 ## Clock synchronisation — PTP
 
-Audio devices synchronise their sample clocks with PTP (IEEE 1588v2):
+Audio devices synchronise their sample clocks with PTP (IEEE 1588v2). Grandmaster election follows the standard **Best Master Clock Algorithm (BMCA)**, so OpenAudioTools devices negotiate cleanly with any PTP-capable device on the same LAN.
 
-- One device — by default the mixer — is the PTP **grandmaster**.
-- All other audio devices lock to it as PTP slaves.
+Each device type advertises a `priority1` value that expresses its suitability as clock source:
+
+| Priority | Device | Rationale |
+|----------|--------|-----------|
+| 128 | **MixTEE** | Receives and mixes multiple streams — natural clock anchor |
+| 144 | **HubTEE** | Bridges audio and MIDI — good fallback |
+| 160 | **SynTEE** | Single-output source — least preferred |
+
+If priorities are equal (e.g. two SynTEEs, or an OAT device and a third-party device at the same priority), BMCA breaks the tie using clock quality and MAC address as defined by IEEE 1588.
+
+- All other audio devices lock to the elected grandmaster as PTP slaves.
 - RTP timestamps are derived from the shared PTP clock, keeping all streams sample-aligned.
+
+### Interoperability
+
+- **AES67 / Dante / Ravenna devices** — Because OAT devices use standard BMCA, a third-party AES67 device on the same LAN participates in the same grandmaster election. If it wins (e.g. a dedicated PTP grandmaster clock at `priority1=1`), OAT devices will lock to it. This is by design — one shared clock domain means zero sample-rate conversion between OAT and AES67 streams.
+- **Computers / DAWs** — A USB-connected computer does not participate in PTP; the OAT device it is plugged into bridges the clock domain. A computer connected over Ethernet with an AES67 software driver (e.g. Dante Virtual Soundcard, RAVENNA ASIO) is a regular PTP participant and joins the same BMCA election.
 
 The current implementation is software-based, using the Teensy's GPT timer at 1 MHz. This gives ~10-100 us accuracy — well within the 1 ms packet buffer and sufficient for studio use. Nanosecond-grade accuracy (full AES67 compliance) would require a PHY with hardware PTP support such as the DP83640; the DP83825I on the Teensy 4.1 does not have this.
 
@@ -139,22 +153,22 @@ This runs alongside audio on the same Ethernet cable. CPU cost is under 1%.
 
 Each device type has a defined network personality:
 
-### Synth ([SynTee](https://github.com/openaudiotools/syntee))
+### SynTEE ([SynTee](https://github.com/openaudiotools/syntee))
 
 - Publishes 1–N audio TX streams (main and aux outputs).
-- Publishes one MIDI endpoint (`dir=inout`, `ep=synth`).
+- Publishes one MIDI endpoint (`dir=inout`, `model=syntee`).
 - Optionally browses for controllers to auto-pair.
 
-### Mixer ([MixTee](https://github.com/openaudiotools/mixtee))
+### MixTEE ([MixTee](https://github.com/openaudiotools/mixtee))
 
-- Acts as PTP grandmaster.
+- Default PTP grandmaster (`priority1=128`).
 - Publishes multiple audio streams — both RX (inputs) and TX (buses, mains, auxes).
 - Publishes a MIDI endpoint for full mixer control.
-- Optionally serves a small web UI at `http://mixer-XXXX.local/`.
+- Optionally serves a small web UI at `http://mixtee-XXXX.local/`.
 
-### Hub ([HubTee](devices/hubtee.md))
+### HubTEE ([HubTee](devices/hubtee.md))
 
-- Subscribes to audio streams from synths and mixers.
+- Subscribes to audio streams from SynTEEs and MixTEEs.
 - Publishes its own audio streams if needed.
 - Bridges Network MIDI 2.0 to and from DIN/USB MIDI.
 - Can run the Patchbay (see below).
@@ -162,14 +176,14 @@ Each device type has a defined network personality:
 ### Controller (e.g. motorized-fader surface)
 
 - No audio, no PTP.
-- Publishes one MIDI endpoint (`ep=ctrl`, `dir=inout`).
-- Browses for the mixer's MIDI endpoint and pairs automatically.
+- Publishes one MIDI endpoint (`model=ctrl`, `dir=inout`).
+- Browses for the MixTEE's MIDI endpoint and pairs automatically.
 
 ---
 
 ## Patchbay
 
-The patchbay is a lightweight routing manager that runs on the mixer or hub:
+The patchbay is a lightweight routing manager that runs on the MixTEE or HubTEE:
 
 1. Periodically browses `_jfa-audio._udp` and `_jfa-midi2._udp` services.
 2. Builds an in-memory graph of every device, port, and stream from the DNS-SD TXT data.
@@ -212,7 +226,7 @@ All network services fit comfortably alongside the existing audio DSP workload:
 
 **Direct connection** — A MixTee and a computer connected by a single Ethernet cable. Audio and MIDI flow over that one cable; link-local addressing and mDNS handle everything.
 
-**Star via switch** — Multiple SynTees, a MixTee, and a computer all plugged into a cheap Ethernet switch. Every device discovers every other device automatically. The MixTee is PTP grandmaster.
+**Star via switch** — Multiple SynTees, a MixTee, and a computer all plugged into a cheap Ethernet switch. Every device discovers every other device automatically. The MixTee wins PTP grandmaster election by priority.
 
 **Star via HubTee** — The HubTee acts as the central hub, connecting SynTees, computers, and MIDI controllers. It bridges USB/DIN MIDI onto the network and can run the patchbay UI for the whole setup.
 
