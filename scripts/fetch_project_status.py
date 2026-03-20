@@ -10,7 +10,7 @@ GRAPHQL_URL = "https://api.github.com/graphql"
 ORG = "openaudiotools"
 PROJECT_NUMBER = 2
 FIELD_NAME = "Innitiative Status"
-STATUS_FIELD_NAME = "Status"
+STATUS_FIELD_NAME = "Phase"
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "..", "docs", "status.md")
 DEVICES_PATH = os.path.join(os.path.dirname(__file__), "..", "docs", "devices", "index.md")
 
@@ -140,7 +140,7 @@ def build_page(project: dict, items: list[dict]) -> str:
         return "\n".join(lines)
 
     lines.append("## Devices\n")
-    lines.append("| Device | Status | Link |")
+    lines.append("| Device | Phase | Link |")
     lines.append("|--------|--------|------|")
     for item in items:
         status = item["initiative_status"] or item["status"] or ""

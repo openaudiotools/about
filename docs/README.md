@@ -65,11 +65,38 @@ We're building on the following principles:
     - Easy to modify and recombine
     - Dedicated, swappable components
 
+- :material-chip: __Robust Hardware__
+
+    - Easy to build and repair
+    - Common components on separate boards
+    - Plug and play
+    - Quality audio signal
+    - Easy firmware load / update
+
+- :material-chip: __Essential Hardware__
+
+    - One main role per device or component
+    - Focus on Utility
+    - Repurpose by firmware swap
+    - Rely on midi controllers for control
+
 - :material-code-tags: __Open Software__
 
     - Open source dependencies
     - Modular
     - Extendable
+
+- :material-code-tags: __Robust Software__
+
+    - Minimal dependencies
+    - Modular architecture
+    - UI and DSP separation
+    - System and Function Separation
+
+- :material-code-tags: __Essential Software__
+
+    - Single functionality
+    - Standardized UI system
 
 - :material-ethernet: __Open Connectivity__
 
@@ -77,42 +104,15 @@ We're building on the following principles:
     - Open, non-proprietary formats
     - No proprietary connectors
 
-
-- :material-chip: __Robust Hardware__
-    - Easy to build and repair
-    - Common components on separate boards
-    - Plug and play
-    - Quality audio signal
-    - Easy firmware load / update
-
-
-- :material-code-tags: __Robust Software__
-    - Minimal dependencies
-    - Modular architecture
-    - UI and DSP separation
-    - System and Function Separation
-
-
 - :material-ethernet: __Robust Connectivity__
+
     - Prefer cables over wireless
     - Single connector per use case
     - USB Midi Host when possible
     - Doesn't need computer to work
 
-
-- :material-chip: __Essential Hardware__
-    - One main role per device or component
-    - Focus on Utility
-    - Repurpose by firmware swap
-    - Rely on midi controllers for control
-
-
-- :material-code-tags: __Essential Software__
-    - Single functionality
-    - Standardized UI system
-
-
 - :material-ethernet: __Essential Connectivity__
+
     - Ethernet with midi and audio
     - Standardized connectors
 

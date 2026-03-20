@@ -40,48 +40,85 @@ where `XXXX` is derived from the last four hex digits of the MAC address. Exampl
 
 No manual IP assignment is ever needed.
 
+### User-settable device name
+
+Each device has an optional **device name** that the user can set via the web UI or display (e.g. "Bass Synth", "Drums", "Main Mixer"). The name defaults to the model + MAC suffix (e.g. "SynTEE a3f2") and appears in:
+
+- **SAP/SDP** — prefixed to the stream name in the `s=` line (e.g. `s=Bass Synth — Out 1-2`)
+- **DNS-SD** — as the `UMPEndpointName` TXT field on `_midi2._udp` services. The DNS-SD Service Instance Name (e.g. `Bass Synth._midi2._udp.local`) may also be human-readable, but per the Network MIDI 2.0 spec (§4.2) it is an internal identifier — `UMPEndpointName` is the canonical display name
+- **mDNS hostname** — unchanged (`syntee-a3f2.local`); the hostname stays stable for scripting and bookmarks
+
+This lets users distinguish multiple devices of the same type at a glance in the patchbay, DAW, or any AES67 browser.
+
 ---
 
-## Discovery — mDNS and DNS-SD
+## Discovery — SAP/SDP and DNS-SD
 
-At boot each device registers its services with DNS-SD so that every other device on the LAN can find it automatically.
+Discovery is split by media type: **audio** uses standard SAP/SDP (the same mechanism used by AES67), while **MIDI** uses DNS-SD with the standard Network MIDI 2.0 service type.
 
-### Service types
+### Audio discovery — SAP/SDP
 
-| Service | Purpose |
-|---------|---------|
-| `_jfa-audio._udp.local` | Audio endpoint (RTP stream) |
-| `_jfa-midi2._udp.local` | MIDI 2.0 endpoint (UMP over UDP) |
+Each audio-capable device periodically announces its RTP streams via the **Session Announcement Protocol** (SAP, RFC 2974). Announcements are multicast to `239.255.255.255:9875` and contain an **SDP** (RFC 4566) session description.
 
-The `_jfa-` prefix is project-specific to avoid collisions with other mDNS services.
+A typical SDP blob for a SynTEE stereo output (device named "Bass Synth"):
 
-### Audio service TXT fields
+```
+v=0
+o=syntee-a3f2 1 1 IN IP4 169.254.23.183
+s=Bass Synth — Out 1-2
+c=IN IP4 169.254.23.183
+t=0 0
+m=audio 50000 RTP/AVP 97
+a=rtpmap:97 L24/48000/2
+a=ptime:1
+a=ts-refclk:ptp=IEEE1588-2008
+a=mediaclk:direct=0
+```
 
-| Key | Values | Meaning |
-|-----|--------|---------|
-| `model` | `syntee`, `mixtee`, `hubtee` | What kind of device |
-| `dir` | `tx`, `rx`, `txrx` | Stream direction |
-| `ch` | `2`, `8`, `16` | Channel count |
-| `sr` | `48000` | Sample rate |
-| `fmt` | `pcm24` | Sample format |
-| `pkt` | `1` | Packet time in ms |
-| `stream` | `main`, `aux1`, `busA`, ... | Stream identifier |
+Key SDP fields and their meaning:
+
+| SDP line | Meaning |
+|----------|---------|
+| `o=` | Originator — device hostname and session version |
+| `s=` | Session name — device name + stream name |
+| `c=` | Connection — sender IP address |
+| `m=audio` | Media line — port, RTP profile, payload type |
+| `a=rtpmap` | Codec — L24 (24-bit PCM), sample rate, channel count |
+| `a=ptime` | Packet time in ms |
+| `a=ts-refclk` | Clock reference — PTP IEEE 1588-2008 |
+| `a=mediaclk` | Media clock offset |
+
+This is the standard AES67 SDP format. Any AES67-compatible receiver (Dante, Ravenna, software drivers) can discover and subscribe to OAT audio streams, and vice versa.
+
+SAP announcements repeat every ~30 seconds per stream. A receiver that stops hearing announcements for a stream considers it offline.
+
+### MIDI discovery — DNS-SD
+
+MIDI endpoints are advertised via DNS-SD with the standard Network MIDI 2.0 service type:
+
+```
+_midi2._udp.local
+```
+
+This is the service type defined by the MMA's Network MIDI 2.0 specification (M2-124-UM). Any Network MIDI 2.0 device on the same LAN can discover OAT MIDI endpoints, and OAT devices can discover third-party endpoints.
 
 ### MIDI service TXT fields
 
-| Key | Values | Meaning |
-|-----|--------|---------|
-| `dir` | `in`, `out`, `inout` | Endpoint direction |
-| `ump` | `2.0` | UMP version |
-| `model` | `syntee`, `mixtee`, `ctrl`, `hubtee` | Endpoint model |
-| `ch` | number | Logical channel count or groups |
+The Network MIDI 2.0 spec (M2-124-UM §4.4, Table 6) defines exactly two TXT record keys:
 
-### Example service names
+| Key | Format | Meaning |
+|-----|--------|---------|
+| `UMPEndpointName` | UTF-8, up to 98 bytes | User-visible display name (e.g. "Bass Synth") |
+| `ProductInstanceId` | ASCII 32-126, up to 42 bytes | Statistically unique device identifier |
+
+OAT-specific metadata (direction, model, channel count) is not advertised in DNS-SD TXT records. Devices discover these details via UMP MIDI-CI Property Exchange after a session is established.
+
+### Example discovery names
 
 ```
-SynTEE Out 1-2._jfa-audio._udp.local
-MixTEE Main._jfa-audio._udp.local
-Main Controller._jfa-midi2._udp.local
+Bass Synth — Out 1-2        ← SAP/SDP session name (s= line)
+Main Mixer — Main           ← SAP/SDP session name (s= line)
+Fader Bank._midi2._udp.local        ← DNS-SD MIDI service
 ```
 
 Devices can also browse for peer services to auto-pair — a fader controller discovers the MixTEE's MIDI endpoint and connects without user intervention.
@@ -139,11 +176,29 @@ A receiver subscribes to a stream using the sender's IP, port, and stream ID. On
 
 ## MIDI transport — MIDI 2.0 over UDP
 
-MIDI uses MIDI 2.0 Universal MIDI Packets (UMP) carried over UDP:
+MIDI uses MIDI 2.0 Universal MIDI Packets (UMP) carried over UDP, following the MMA's Network MIDI 2.0 specification (M2-124-UM v1.0.1).
 
-- Each MIDI endpoint gets one UDP port.
-- The port and endpoint name are advertised via `_jfa-midi2._udp`.
-- Session setup is simple: once two endpoints discover each other they handshake and begin exchanging UMP packets.
+### Host/Client model
+
+The spec (§2.1-2.2) defines two roles:
+
+- **Host** — exposes a UMP Endpoint on a dedicated UDP port and handles incoming session requests.
+- **Client** — initiates sessions with Hosts.
+
+A device can act as both Host and Client simultaneously (spec §9). OAT devices that expose MIDI endpoints (SynTEE, MixTEE, HubTEE) act as Hosts; when they connect to other devices' endpoints they act as Clients.
+
+### Packet format
+
+All Network MIDI 2.0 UDP packets begin with the signature `0x4D494449` ("MIDI" in ASCII) followed by a command-specific header. Data packets include 16-bit sequence numbers for loss detection and optional FEC (spec §7.2.2) for recovery.
+
+### Session lifecycle
+
+1. **Invitation** — Client sends an Invitation command to the Host's UDP port.
+2. **Accepted** — Host replies with an Invitation Accepted command (or rejects).
+3. **UMP Data** — Both sides exchange UMP packets over the established session.
+4. **Bye** — Either side sends a Bye command to end the session cleanly.
+
+The spec defines six session states (Pending, Authentication, Accepted, Rejected, Closing, and Session Reset) and a Ping/Pong keepalive mechanism. OAT v1 uses the basic Invitation → Accepted → Data → Bye flow.
 
 This runs alongside audio on the same Ethernet cable. CPU cost is under 1%.
 
@@ -156,7 +211,7 @@ Each device type has a defined network personality:
 ### SynTEE ([SynTee](https://github.com/openaudiotools/syntee))
 
 - Publishes 1–N audio TX streams (main and aux outputs).
-- Publishes one MIDI endpoint (`dir=inout`, `model=syntee`).
+- Publishes one MIDI endpoint (Host, bidirectional).
 - Optionally browses for controllers to auto-pair.
 
 ### MixTEE ([MixTee](https://github.com/openaudiotools/mixtee))
@@ -176,7 +231,7 @@ Each device type has a defined network personality:
 ### Controller (e.g. motorized-fader surface)
 
 - No audio, no PTP.
-- Publishes one MIDI endpoint (`model=ctrl`, `dir=inout`).
+- Publishes one MIDI endpoint (Host, bidirectional).
 - Browses for the MixTEE's MIDI endpoint and pairs automatically.
 
 ---
@@ -185,8 +240,8 @@ Each device type has a defined network personality:
 
 The patchbay is a lightweight routing manager that runs on the MixTEE or HubTEE:
 
-1. Periodically browses `_jfa-audio._udp` and `_jfa-midi2._udp` services.
-2. Builds an in-memory graph of every device, port, and stream from the DNS-SD TXT data.
+1. Periodically browses SAP announcements for audio streams and `_midi2._udp` for MIDI services.
+2. Builds an in-memory graph of every device, port, and stream from the SDP and DNS-SD data.
 3. Exposes a simple web UI (HTTP/JSON + minimal HTML/JS) or an OSC/JSON API.
 4. Applies routes by opening/closing RTP sockets for audio and initiating MIDI 2.0 sessions between endpoints.
 
@@ -198,9 +253,9 @@ This gives the user a single place to see every device on the network and patch 
 
 Version 1 assumes a trusted, isolated studio LAN:
 
-- No authentication or encryption.
+- No encryption. The Network MIDI 2.0 spec (§6.7-6.10) defines optional session authentication (SHA-256 digest challenge-response) that could be adopted in a future version if needed.
 - All custom UDP ports live in a documented, non-conflicting range (`50000`–`50100`).
-- All custom service types use the `_jfa-` prefix to avoid namespace collisions.
+- Audio uses standard SAP/SDP; MIDI uses the standard `_midi2._udp` service type.
 
 ---
 
@@ -213,10 +268,11 @@ All network services fit comfortably alongside the existing audio DSP workload:
 | Audio DSP (TDM + mixer) | ~30% |
 | RTP encode/decode | 1–3% |
 | PTP timestamping | 2–5% |
+| SAP/SDP announcements | < 0.5% |
 | mDNS / DNS-SD | < 0.5% |
 | MIDI 2.0 over UDP | < 1% |
 | QNEthernet stack | 2–3% |
-| **Total** | **~40%** |
+| **Total** | **~40–41%** |
 
 ~60% CPU headroom remains. Memory is similarly comfortable: 8 MB PSRAM total, ~2 MB used for recording buffers, leaving 6 MB for RTP ring buffers, PTP logs, and mDNS cache.
 

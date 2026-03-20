@@ -136,7 +136,7 @@ Working document cataloging the open-source ecosystem used across the OpenAudioT
 
 ### mDNS / DNS-SD
 - **What:** Zero-configuration networking for device discovery and service advertisement.
-- **Where used:** Advertises audio and MIDI services (`_jfa-audio._udp.local`, `_jfa-midi2._udp.local`). Hostname format: `device-type-XXXX.local`. TXT records carry role, direction, channel count, sample rate, format, packet time, stream ID.
+- **Where used:** Advertises MIDI services via `_midi2._udp.local` (DNS-SD) and audio streams via SAP/SDP (multicast to `239.255.255.255:9875`). Hostname format: `device-type-XXXX.local`. MIDI TXT records carry `UMPEndpointName` and `ProductInstanceId` per the Network MIDI 2.0 spec (M2-124-UM §4.4); audio stream metadata is expressed in SDP session descriptions.
 
 ### MIDI 2.0 / UMP
 - **What:** Universal MIDI Packet protocol (successor to MIDI 1.0).

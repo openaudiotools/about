@@ -19,14 +19,14 @@ The HubTee serves as the central nervous system of an OpenAudioTools studio setu
 - **MIDI routing** — Bridges USB MIDI devices, DIN/TRS MIDI, and Network MIDI 2.0 (UMP over UDP). 4× USB-A host ports for MIDI controllers.
 - **Ethernet hub** — 8× Ethernet connectors allow star or daisy-chain topology for connecting multiple devices (SynTees, MixTees, computers).
 - **Clock distribution** — Can act as PTP grandmaster (IEEE 1588v2) for synchronizing audio clocks across all networked devices.
-- **Audio bridging** — Subscribes to audio streams from synths/mixers and can publish its own `_jfa-audio._udp` streams.
+- **Audio bridging** — Subscribes to audio streams from synths/mixers and can publish its own streams via SAP/SDP.
 
 ## Network Role
 
 - Network role: `hub`
-- Publishes `_jfa-midi2._udp` endpoints for bridging Network MIDI 2.0 to DIN/USB MIDI.
-- Publishes `_jfa-audio._udp` TX if it exposes its own audio stream(s).
-- Can run the **Patchbay "brain"** — periodically browses `_jfa-audio._udp` and `_jfa-midi2._udp`, builds an in-RAM device/port graph, and exposes a web UI or OSC/JSON API for managing routes.
+- Publishes `_midi2._udp` endpoints for bridging Network MIDI 2.0 to DIN/USB MIDI.
+- Announces audio TX streams via SAP/SDP if it exposes its own audio stream(s).
+- Can run the **Patchbay "brain"** — periodically browses SAP for audio streams and `_midi2._udp` for MIDI, builds an in-RAM device/port graph, and exposes a web UI or OSC/JSON API for managing routes.
 - Hostname: `hub-XXXX.local` (or similar pattern)
 
 ## Hardware Platform
