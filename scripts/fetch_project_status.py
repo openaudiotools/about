@@ -1,4 +1,14 @@
-"""Fetch initiative status from GitHub Projects v2 and generate docs/status.md."""
+"""Fetch initiative status from GitHub Projects v2 and update docs/status.md.
+
+The script looks for a placeholder block in the existing status.md:
+
+    <!-- DEVICE_STATUS_TABLE_START -->
+    ... (replaced by the script) ...
+    <!-- DEVICE_STATUS_TABLE_END -->
+
+Only the content between the markers is replaced. Everything else in the
+file is left untouched, so hand-written sections are preserved.
+"""
 
 import json
 import os
@@ -14,15 +24,15 @@ STATUS_FIELD_NAME = "Phase"
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "..", "docs", "status.md")
 DEVICES_PATH = os.path.join(os.path.dirname(__file__), "..", "docs", "devices", "index.md")
 
-INTRO = """\
-# Project Status
+TABLE_START = "<!-- DEVICE_STATUS_TABLE_START -->"
+TABLE_END = "<!-- DEVICE_STATUS_TABLE_END -->"
 
-Open Audio Tools is a side project — I contribute as much time as I can
-but have other priorities. The goal is to reach a working prototype by the
-end of 2026.
+FALLBACK_TABLE = """\
+!!! warning "Live data unavailable"
 
-**[Project Board](https://github.com/orgs/openaudiotools/projects/2)** · **[Journal](journal/README.md)**
-"""
+    Could not fetch project data from GitHub. Visit the
+    [Project Board](https://github.com/orgs/openaudiotools/projects/2)
+    to see current device status."""
 
 # Devices with dedicated repos (org-level)
 REPO_DEVICES = {"syntee", "mixtee", "despee"}
@@ -72,17 +82,29 @@ query {
 }
 """ % (ORG, PROJECT_NUMBER)
 
-FALLBACK_PAGE = INTRO + """
-!!! warning "Live data unavailable"
+def replace_table_block(content: str, table: str) -> str:
+    """Replace the content between TABLE_START and TABLE_END markers."""
+    pattern = re.compile(
+        re.escape(TABLE_START) + r".*?" + re.escape(TABLE_END),
+        re.DOTALL,
+    )
+    replacement = f"{TABLE_START}\n{table}\n{TABLE_END}"
+    new_content, count = pattern.subn(replacement, content)
+    if count == 0:
+        raise ValueError(
+            f"Placeholder {TABLE_START} ... {TABLE_END} not found in {OUTPUT_PATH}"
+        )
+    return new_content
 
-    Could not fetch project data from GitHub. Visit the
-    [Project Board](https://github.com/orgs/openaudiotools/projects/2)
-    to see current device status.
-"""
 
-
-def write_output(content: str) -> None:
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+def write_output(table: str) -> None:
+    if not os.path.exists(OUTPUT_PATH):
+        raise FileNotFoundError(
+            f"{OUTPUT_PATH} does not exist. Create it with the placeholder markers first."
+        )
+    with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    content = replace_table_block(content, table)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(content)
 
@@ -129,17 +151,12 @@ def device_link(title: str) -> str:
     return ""
 
 
-def build_page(project: dict, items: list[dict]) -> str:
-    lines = [INTRO]
-
+def build_table(items: list[dict]) -> str:
+    """Build just the devices table (without page chrome)."""
     if not items:
-        lines.append(
-            "!!! note\n\n"
-            "    No items found in the project board.\n"
-        )
-        return "\n".join(lines)
+        return '!!! note\n\n    No items found in the project board.'
 
-    lines.append("## Devices\n")
+    lines = []
     lines.append("| Device | Phase | Link |")
     lines.append("|--------|--------|------|")
     for item in items:
@@ -152,8 +169,6 @@ def build_page(project: dict, items: list[dict]) -> str:
             status_cell = status
         link_cell = device_link(item["title"])
         lines.append(f"| {item['title']} | {status_cell} | {link_cell} |")
-    lines.append("")
-
     return "\n".join(lines)
 
 
@@ -219,34 +234,34 @@ def update_devices_page(items: list[dict]) -> None:
 def main() -> None:
     token = os.environ.get("GITHUB_TOKEN", "").strip()
     if not token:
-        print("No GITHUB_TOKEN set — writing fallback page.")
-        write_output(FALLBACK_PAGE)
+        print("No GITHUB_TOKEN set — writing fallback table.")
+        write_output(FALLBACK_TABLE)
         return
 
     try:
         data = fetch_project_data(token)
     except (urllib.error.URLError, urllib.error.HTTPError) as exc:
-        print(f"GitHub API error: {exc} — writing fallback page.")
-        write_output(FALLBACK_PAGE)
+        print(f"GitHub API error: {exc} — writing fallback table.")
+        write_output(FALLBACK_TABLE)
         return
 
     errors = data.get("errors")
     if errors:
-        print(f"GraphQL errors: {errors} — writing fallback page.")
-        write_output(FALLBACK_PAGE)
+        print(f"GraphQL errors: {errors} — writing fallback table.")
+        write_output(FALLBACK_TABLE)
         return
 
     project = (data.get("data") or {}).get("organization", {}).get("projectV2")
     if not project:
-        print("Project not found — writing fallback page.")
-        write_output(FALLBACK_PAGE)
+        print("Project not found — writing fallback table.")
+        write_output(FALLBACK_TABLE)
         return
 
     items = collect_items(project)
-    page = build_page(project, items)
-    write_output(page)
+    table = build_table(items)
+    write_output(table)
     update_devices_page(items)
-    print(f"Wrote {len(items)} items to {OUTPUT_PATH}")
+    print(f"Updated {len(items)} items in {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":

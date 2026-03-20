@@ -4,16 +4,7 @@ I'm looking for people who find this project interesting and want to help shape 
 
 ## Start with the discussions
 
-The single best thing you can do is join the [GitHub Discussions](https://github.com/openaudiotools/about/discussions) and share your thoughts. Each device has its own category:
-
-| Device | Discussion | Status |
-|--------|-----------|--------|
-| [MixTEE](devices/index.md) | [MixTEE Discussions](https://github.com/openaudiotools/about/discussions/categories/mixtee) | Product Design |
-| [SynTEE](devices/index.md) | [SynTEE Discussions](https://github.com/openaudiotools/about/discussions/categories/syntee) | Product Design |
-| [DESPEE](components/index.md) | [DESPEE Discussions](https://github.com/openaudiotools/about/discussions/categories/despee) | Product Design |
-| [HubTEE](devices/hubtee.md) | [HubTEE Discussions](https://github.com/openaudiotools/about/discussions/categories/hubtee) | Concept |
-| [Voicee](devices/voicee.md) | [Voicee Discussions](https://github.com/openaudiotools/about/discussions/categories/voicee) | Concept |
-| [Stringee](devices/stringee.md) | [Stringee Discussions](https://github.com/openaudiotools/about/discussions/categories/stringee) | Concept |
+The single best thing you can do is join the [GitHub Discussions](https://github.com/openaudiotools/about/discussions) and share your thoughts. Each device has its own discussion category — see the [Devices](devices/index.md) page for the full list and the [Project Status](status.md) page for where things stand.
 
 I'd love to hear your thoughts — whether it's high-level ideas about what these devices should do, or specific opinions on implementation details like component choices, circuit topologies, and design trade-offs. I especially appreciate constructive technical critique and concrete proposals. If you've worked with a particular codec, MCU, or connector and have a take on why it does or doesn't fit here, that kind of input is incredibly helpful.
 
