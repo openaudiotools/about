@@ -7,17 +7,19 @@ repo_name: openaudiotools/about
 docs_dir: docs
 
 nav:
-  - Overview: README.md
-  - Rationale: rationale.md
-  - Devices: devices/index.md
-  - Components: components/index.md
-  - Networking: networking.md
-  - Ecosystem Notes: ecosystem-notes.md
-  - Status: status.md
-  - Contributing: contributing.md
-  - AI Journal: https://github.com/openaudiotools/about/tree/main/docs/journal
-  - Discussions: https://github.com/openaudiotools/about/discussions
-  - Project: https://github.com/orgs/openaudiotools/projects/2
+  - Documentation:
+    - Overview: README.md
+    - Rationale: rationale.md
+    - Devices: devices/index.md
+    - Components: components/index.md
+    - Networking: networking.md
+    - Ecosystem Notes: ecosystem-notes.md
+    - Status: status.md
+    - Contributing: contributing.md
+  - GitHub:
+    - AI Journal: https://github.com/openaudiotools/about/tree/main/docs/journal
+    - Discussions: https://github.com/openaudiotools/about/discussions
+    - Project: https://github.com/orgs/openaudiotools/projects/2
 
 theme:
   name: material
@@ -41,6 +43,9 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
 
 plugins:
   - search
