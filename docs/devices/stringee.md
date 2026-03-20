@@ -1,4 +1,4 @@
-# StringTee
+# Stringee
 
 A small guitar/instrument preamp module that connects to [MixTee](https://github.com/openaudiotools/mixtee) or [SynTee](https://github.com/openaudiotools/syntee) inputs.
 
@@ -14,7 +14,7 @@ A small guitar/instrument preamp module that connects to [MixTee](https://github
 
 ## Purpose
 
-The StringTee is an accessory device that adds guitar/instrument connectivity to devices that lack built-in preamps (MixTee, SynTee). It provides impedance matching and gain control for instrument-level signals.
+The Stringee is an accessory device that adds guitar/instrument connectivity to devices that lack built-in preamps (MixTee, SynTee). It provides impedance matching and gain control for instrument-level signals.
 
 ## Design Philosophy
 

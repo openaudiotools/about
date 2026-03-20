@@ -118,11 +118,11 @@ A digital audio mixer, recorder, and interface. Designed to be used with MIDI co
 
 A USB / MIDI / Ethernet hub with clock.
 
-### [VoiceTee](devices/voicetee.md)
+### [Voicee](devices/voicee.md)
 
 A small mic preamp module that connects to MixTee or SynTee inputs.
 
-### [StringTee](devices/stringtee.md)
+### [Stringee](devices/stringee.md)
 
 A small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
 

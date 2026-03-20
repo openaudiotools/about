@@ -1,4 +1,4 @@
-# VoiceTee
+# Voicee
 
 A small microphone preamp module that connects to [MixTee](https://github.com/openaudiotools/mixtee) or [SynTee](https://github.com/openaudiotools/syntee) inputs.
 
@@ -14,7 +14,7 @@ A small microphone preamp module that connects to [MixTee](https://github.com/op
 
 ## Purpose
 
-The VoiceTee is an accessory device that adds microphone connectivity to devices that lack built-in preamps (MixTee, SynTee). It provides phantom power and gain control in a small, self-contained module.
+The Voicee is an accessory device that adds microphone connectivity to devices that lack built-in preamps (MixTee, SynTee). It provides phantom power and gain control in a small, self-contained module.
 
 ## Design Philosophy
 

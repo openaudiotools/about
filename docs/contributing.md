@@ -12,8 +12,8 @@ The single best thing you can do is join the [GitHub Discussions](https://github
 | [SynTEE](devices/index.md) | [SynTEE Discussions](https://github.com/openaudiotools/about/discussions/categories/syntee) | Product Design |
 | [DESPEE](components/index.md) | [DESPEE Discussions](https://github.com/openaudiotools/about/discussions/categories/despee) | Product Design |
 | [HubTEE](devices/hubtee.md) | [HubTEE Discussions](https://github.com/openaudiotools/about/discussions/categories/hubtee) | Concept |
-| [VoiceTee](devices/voicetee.md) | [VoiceTee Discussions](https://github.com/openaudiotools/about/discussions/categories/voicee) | Concept |
-| [StringTee](devices/stringtee.md) | [StringTee Discussions](https://github.com/openaudiotools/about/discussions/categories/stringee) | Concept |
+| [Voicee](devices/voicee.md) | [Voicee Discussions](https://github.com/openaudiotools/about/discussions/categories/voicee) | Concept |
+| [Stringee](devices/stringee.md) | [Stringee Discussions](https://github.com/openaudiotools/about/discussions/categories/stringee) | Concept |
 
 I'd love to hear your thoughts — whether it's high-level ideas about what these devices should do, or specific opinions on implementation details like component choices, circuit topologies, and design trade-offs. I especially appreciate constructive technical critique and concrete proposals. If you've worked with a particular codec, MCU, or connector and have a take on why it does or doesn't fit here, that kind of input is incredibly helpful.
 

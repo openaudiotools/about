@@ -47,7 +47,7 @@ USB / MIDI / Ethernet hub with clock. Central routing and connectivity hub for t
 
 ---
 
-## VoiceTee
+## Voicee
 
 Small microphone preamp module that connects to MixTee or SynTee inputs.
 
@@ -56,13 +56,13 @@ Small microphone preamp module that connects to MixTee or SynTee inputs.
 | | |
 |---|---|
 | Issue | [openaudiotools/about#4](https://github.com/openaudiotools/about/issues/4) |
-| Discussion | [VoiceTee](https://github.com/openaudiotools/about/discussions/categories/voicee) |
+| Discussion | [Voicee](https://github.com/openaudiotools/about/discussions/categories/voicee) |
 
-[Read more &rarr;](voicetee.md)
+[Read more &rarr;](voicee.md)
 
 ---
 
-## StringTee
+## Stringee
 
 Small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
 
@@ -71,6 +71,6 @@ Small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
 | | |
 |---|---|
 | Issue | [openaudiotools/about#5](https://github.com/openaudiotools/about/issues/5) |
-| Discussion | [StringTee](https://github.com/openaudiotools/about/discussions/categories/stringee) |
+| Discussion | [Stringee](https://github.com/openaudiotools/about/discussions/categories/stringee) |
 
-[Read more &rarr;](stringtee.md)
+[Read more &rarr;](stringee.md)
