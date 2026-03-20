@@ -2,75 +2,36 @@
 
 The OpenAudioTools ecosystem consists of five devices. Some have graduated to their own repositories; others remain at the concept stage.
 
----
+<div class="grid cards" markdown>
 
-## MixTee
+- :material-mixer-settings: __MixTee__
 
-Digital audio mixer, recorder, and USB audio interface.
+    Digital audio mixer, recorder, and USB audio interface.
 
-**Status:** Product Design
+    [:octicons-issue-opened-16: Issue](https://github.com/openaudiotools/about/issues/2) · [:octicons-comment-discussion-16: Discussion](https://github.com/openaudiotools/about/discussions/categories/mixtee) · [:octicons-repo-16: Repo](https://github.com/openaudiotools/mixtee)
 
-| | |
-|---|---|
-| Repo | [openaudiotools/mixtee](https://github.com/openaudiotools/mixtee) |
-| Issue | [openaudiotools/about#2](https://github.com/openaudiotools/about/issues/2) |
-| Discussion | [MixTEE](https://github.com/openaudiotools/about/discussions/categories/mixtee) |
+- :material-piano: __SynTee__
 
----
+    Standalone virtual sound module / synthesizer.
 
-## SynTee
+    [:octicons-issue-opened-16: Issue](https://github.com/openaudiotools/about/issues/1) · [:octicons-comment-discussion-16: Discussion](https://github.com/openaudiotools/about/discussions/categories/syntee) · [:octicons-repo-16: Repo](https://github.com/openaudiotools/syntee)
 
-Standalone virtual sound module / synthesizer.
+- :material-hub: __HubTee__
 
-**Status:** Product Design
+    USB / MIDI / Ethernet hub with clock. Central routing and connectivity hub for the OpenAudioTools ecosystem.
 
-| | |
-|---|---|
-| Repo | [openaudiotools/syntee](https://github.com/openaudiotools/syntee) |
-| Issue | [openaudiotools/about#1](https://github.com/openaudiotools/about/issues/1) |
-| Discussion | [SynTEE](https://github.com/openaudiotools/about/discussions/categories/syntee) |
+    [:octicons-issue-opened-16: Issue](https://github.com/openaudiotools/about/issues/6) · [:octicons-comment-discussion-16: Discussion](https://github.com/openaudiotools/about/discussions/categories/hubtee) · [:octicons-arrow-right-16: Read more](hubtee.md)
 
----
+- :material-microphone: __Voicee__
 
-## HubTee
+    Small microphone preamp module that connects to MixTee or SynTee inputs.
 
-USB / MIDI / Ethernet hub with clock. Central routing and connectivity hub for the OpenAudioTools ecosystem.
+    [:octicons-issue-opened-16: Issue](https://github.com/openaudiotools/about/issues/4) · [:octicons-comment-discussion-16: Discussion](https://github.com/openaudiotools/about/discussions/categories/voicee) · [:octicons-arrow-right-16: Read more](voicee.md)
 
-**Status:** Concept
+- :material-guitar-electric: __Stringee__
 
-| | |
-|---|---|
-| Issue | [openaudiotools/about#6](https://github.com/openaudiotools/about/issues/6) |
-| Discussion | [HubTEE](https://github.com/openaudiotools/about/discussions/categories/hubtee) |
+    Small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
 
-[Read more &rarr;](hubtee.md)
+    [:octicons-issue-opened-16: Issue](https://github.com/openaudiotools/about/issues/5) · [:octicons-comment-discussion-16: Discussion](https://github.com/openaudiotools/about/discussions/categories/stringee) · [:octicons-arrow-right-16: Read more](stringee.md)
 
----
-
-## Voicee
-
-Small microphone preamp module that connects to MixTee or SynTee inputs.
-
-**Status:** Concept
-
-| | |
-|---|---|
-| Issue | [openaudiotools/about#4](https://github.com/openaudiotools/about/issues/4) |
-| Discussion | [Voicee](https://github.com/openaudiotools/about/discussions/categories/voicee) |
-
-[Read more &rarr;](voicee.md)
-
----
-
-## Stringee
-
-Small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
-
-**Status:** Concept
-
-| | |
-|---|---|
-| Issue | [openaudiotools/about#5](https://github.com/openaudiotools/about/issues/5) |
-| Discussion | [Stringee](https://github.com/openaudiotools/about/discussions/categories/stringee) |
-
-[Read more &rarr;](stringee.md)
+</div>
