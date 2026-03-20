@@ -30,103 +30,128 @@ Open Audio Tools is an open-source hardware and software platform for music, har
 
 OpenAudioTools is an open-source hardware and software platform for building music tools that are simple, robust, and truly open — free for anyone to build, manufacture, and extend. Born out of need for robust, non experimental and open diy gear. Focused devices, one job done well, built on open standards, designed to work with the controllers you already own. [read more...](rationale.md)
 
-## Core Principles
+## Firstly: OPEN
 
-The project is built on three pillars:
+The project is first and foremost about creating an open source ecosystem.
 
-### Open Hardware
+## Principles
 
-- Easy to source components
-- Affordable
-- Only the essentials
-- Easy to modify
+We're building on the following principles:
 
-### Open Software
+<div class="grid cards grid-3" markdown>
 
-- Simple
-- Modular
-- Extendable
+- #### OPEN
 
-### Open Connectivity
+    - Freely available and open to modification.
 
-- Open, non-proprietary formats
-- Fewer cables
-- No proprietary connectors
+- #### ROBUST
 
-## Hardware
+    - Providing solid utility while being easy to maintain and durable.
 
-Hardware should be **open**, **essential**, **standardized**, and **modular**.
+- #### ESSENTIAL
 
-### Open
+    - Focuses on a single thing and does it well
 
-All designs allow for easy modifications and adaptations.
+</div>
 
-### Essential
+### How it applies:
 
-Each device focuses on one function and does it well. No frills, reasonable cost.
+<div class="grid cards grid-3" markdown>
 
-### Standardized
+- :material-chip: __Open Hardware__
+
+    - Easy to source parts
+    - Only the essentials
+    - Easy to modify and recombine
+    - Dedicated, swappable components
+
+- :material-code-tags: __Open Software__
+
+    - Open source dependencies
+    - Modular
+    - Extendable
+
+- :material-ethernet: __Open Connectivity__
+
+    - Fewer cables
+    - Open, non-proprietary formats
+    - No proprietary connectors
+
+
+- :material-chip: __Robust Hardware__
+    - Easy to build and repair
+    - Common components on separate boards
+    - Plug and play
+    - Quality audio signal
+    - Easy firmware load / update
+
+
+- :material-code-tags: __Robust Software__
+    - Minimal dependencies
+    - Modular architecture
+    - UI and DSP separation
+    - System and Function Separation
+
+
+- :material-ethernet: __Robust Connectivity__
+    - Prefer cables over wireless
+    - Single connector per use case
+    - USB Midi Host when possible
+    - Doesn't need computer to work
+
+
+- :material-chip: __Essential Hardware__
+    - One main role per device or component
+    - Focus on Utility
+    - Repurpose by firmware swap
+    - Rely on midi controllers for control
+
+
+- :material-code-tags: __Essential Software__
+    - Single functionality
+    - Standardized UI system
+
+
+- :material-ethernet: __Essential Connectivity__
+    - Ethernet with midi and audio
+    - Standardized connectors
+
+</div>
+
+
+### Notes:
+
+
+### Standardized Hardware:
 
 - **Teensy** microcontrollers for a consistent development environment
 - **USB** for power (unified power adapters)
 - **TRS 1/8" Type A** for MIDI
-- **Ethernet** for system integration
-- **USB-A MIDI Host** when possible
+- **TS 1/4** for Audio
+- **Ethernet** for system integration into a network
+- **USB-A MIDI Host** when possible thanks to teensy
 - **[DESPEE](https://github.com/openaudiotools/despee)** display module for touchscreen UI
 
-### Modular
-
-A motherboard approach:
+### Robust Hardware
 
 - Often-used components (keys, encoders) are placed on standardized breakout boards for reuse across devices.
-- Specific-purpose functionality (mic preamps, effects) is added as separate, interchangeable devices compatible with other gear.
+- Specific-purpose functionality (mic preamps, effects) is added as separate, interchangeable devices.
 
-## Firmware
+### Essential Firmware
 
-- **Open** — Easy to extend, modify, and adapt
-- **Essential** — Provides the main function very well
-- **Standardized** — Teensy provides a unified architecture and common language
+- Firmware for SynTEE will be swappable to allow for different synths or other functions but each one will be a separate project.
+- UI moved to a separate component to simplify main roles
 
-## Connectivity
+### Open Connectivity
 
-Only open, non-proprietary standards. The essential signals are **audio** and **MIDI**, carried over cables only.
+- Only open, non-proprietary standards.
 
-### Ethernet ([details](networking.md))
-
-MIDI and audio are intended to be available over Ethernet:
-
-- Single cable for audio and MIDI
-- Low latency
-- Cheap hubs and switches
-- Easy internet connectivity
-- Most boards already include Ethernet support
+- MIDI and audio are intended to be available over Ethernet. ([details](networking.md))
 
 ## Devices
 
-### [SynTee](https://github.com/openaudiotools/syntee)
-
-A standalone sound module with basic controls.
-
-### [MixTee](https://github.com/openaudiotools/mixtee)
-
-A digital audio mixer, recorder, and interface. Designed to be used with MIDI controllers. No built-in preamps.
-
-- 16 inputs, 8 outputs (4 stereo)
-- All channels available over Ethernet
-
-### [HubTee](devices/hubtee.md)
-
-A USB / MIDI / Ethernet hub with clock.
-
-### [Voicee](devices/voicee.md)
-
-A small mic preamp module that connects to MixTee or SynTee inputs.
-
-### [Stringee](devices/stringee.md)
-
-A small guitar/instrument preamp module that connects to MixTee or SynTee inputs.
+You can check out the [devices](devices) and [components](components).
 
 ## Ecosystem
 
 See [Ecosystem Notes](ecosystem-notes.md) for a full catalog of the open-source hardware, firmware, and software used across the project.
-
