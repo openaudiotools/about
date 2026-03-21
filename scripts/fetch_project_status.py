@@ -35,7 +35,7 @@ FALLBACK_TABLE = """\
     to see current device status."""
 
 # Devices with dedicated repos (org-level)
-REPO_DEVICES = {"syntee", "mixtee", "despee"}
+REPO_DEVICES = {"syntee", "mixtee", "despee", "phonee"}
 # Concept devices with local spec files
 CONCEPT_DEVICES = {
     "voicee": "devices/voicee.md",

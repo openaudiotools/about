@@ -28,3 +28,4 @@ Reusable headphone output module — TPA6132A2 ground-referenced stereo headphon
 |---|---|
 | Repo | [openaudiotools/phonee](https://github.com/openaudiotools/phonee) |
 | Issue | [openaudiotools/about#15](https://github.com/openaudiotools/about/issues/15) |
+| Discussion | [PHONEE](https://github.com/openaudiotools/about/discussions/categories/phonee) |
